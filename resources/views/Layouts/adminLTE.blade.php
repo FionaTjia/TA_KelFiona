@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> @yield('title')</title>
 
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
@@ -23,12 +27,14 @@
 <div class="wrapper">
 
   <!-- Preloader -->
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src='{{ asset("adminLTE/dist/img/AdminLTELogo.png") }}' alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
