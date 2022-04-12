@@ -20,7 +20,6 @@ Route::get('/', function () {
 Route::resource('admin/konsumen', 'App\\Http\\Controllers\\Admin\KonsumenController');
 Route::resource('admin/supplier', 'App\\Http\\Controllers\\Admin\SupplierController');
 Route::resource('admin/category', 'App\\Http\\Controllers\\Admin\CategoryController');
-Route::resource('admin/stok', 'App\\Http\\Controllers\\Admin\StokController');
 Route::resource('admin/produk', 'App\\Http\\Controllers\\Admin\ProdukController');
 Route::resource('admin/stok', 'App\\Http\\Controllers\\Admin\StokController');
 Route::resource('admin/purchase', 'App\\Http\\Controllers\\Admin\PurchaseController');
