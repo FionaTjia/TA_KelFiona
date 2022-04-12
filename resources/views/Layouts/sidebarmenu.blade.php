@@ -14,7 +14,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href={{ asset("/") }}>
+      <a class="nav-link" href={{ asset("admin/sales") }}>
         <i class="far fa-circle nav-icon"></i>
         <p>Penjualan</p>
         </a>
