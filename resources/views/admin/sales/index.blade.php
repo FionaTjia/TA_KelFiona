@@ -29,14 +29,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Id Sales</th><th>Id Produk</th><th>Id Konsumen</th><th>Actions</th>
+                                        <th>#</th><th>Id Sales</th><th>Id Konsumen</th><th>Id Produk</th><th>Jumlah Sales</th><th>Total Harga</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($sales as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id_sales }}</td><td>{{ $item->id_produk }}</td><td>{{ $item->id_konsumen }}</td>
+                                        <td>{{ $item->id_sales }}</td><td>{{ $item->id_konsumen }}</td><td>{{ $item->id_produk }}</td><td>{{ $item->jumlah_sales }}</td><td>{{ $item->total_harga_sales }}</td>
                                         <td>
                                             <a href="{{ url('/admin/sales/' . $item->id) }}" title="View Sale"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/sales/' . $item->id . '/edit') }}" title="Edit Sale"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

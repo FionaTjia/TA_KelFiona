@@ -25,7 +25,7 @@ class Konsuman extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_konsumen', 'nama_konsumen'];
+    protected $fillable = ['id_konsumen', 'nama_konsumen', 'hp_konsumen'];
 
     
 }

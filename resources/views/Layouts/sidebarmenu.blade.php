@@ -14,20 +14,6 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href={{ asset("admin/sales") }}>
-        <i class="nav-icon fas fa-file"></i>
-        <p>Penjualan</p>
-        </a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link " href={{ asset("admin/konsumen") }}>
-        <i class="far fa-user nav-icon"></i>
-        <p>Konsumen</p>
-      </a>
-    </li>
-
-    <li class="nav-item">
       <a class="nav-link" href={{ asset("admin/category") }}>
         <i class="nav-icon fas fa-chart-pie"></i>
         <p>Product Category</p>
@@ -39,6 +25,20 @@
         <i class="nav-icon fas fa-book"></i>
         <p>Stok</p>
         </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href={{ asset("admin/sales") }}>
+        <i class="nav-icon fas fa-file"></i>
+        <p>Penjualan</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link " href={{ asset("admin/konsumen") }}>
+        <i class="far fa-user nav-icon"></i>
+        <p>Konsumen</p>
+      </a>
     </li>
 
     <li class="nav-item">

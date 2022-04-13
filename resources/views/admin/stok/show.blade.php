@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $stok->id }}</td>
                                     </tr>
-                                    <tr><th> Id Stok </th><td> {{ $stok->id_stok }} </td></tr><tr><th> Stok Id Produk </th><td> {{ $stok->stok_id_produk }} </td></tr><tr><th> Stok </th><td> {{ $stok->stok }} </td></tr>
+                                    <tr><th>Id Produk </th><td> {{ $stok->stok_id_produk }} </td></tr><tr><th> Stok </th><td> {{ $stok->stok }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

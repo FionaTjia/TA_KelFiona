@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $sale->id }}</td>
                                     </tr>
-                                    <tr><th> Id Sales </th><td> {{ $sale->id_sales }} </td></tr><tr><th> Id Produk </th><td> {{ $sale->id_produk }} </td></tr><tr><th> Id Konsumen </th><td> {{ $sale->id_konsumen }} </td></tr>
+                                    <tr><th> Id Sales </th><td> {{ $sale->id_sales }} </td></tr><tr><th> Id Produk </th><td> {{ $sale->id_produk }} </td></tr><tr><th> Id Konsumen </th><td> {{ $sale->id_konsumen }} </td></tr><tr><th> Jumlah Sales </th><td> {{ $sale->jumlah_sales }} </td></tr><tr><th> Total Harga Sales </th><td> {{ $sale->total_harga_sales }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

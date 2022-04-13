@@ -16,9 +16,8 @@ class CreateStoksTable extends Migration
         Schema::create('stoks', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('id_stok')->length(11)->unique();
-            $table->string('stok_id_produk')->length(11);
-            $table->string('stok')->length(1000);
+            $table->string('stok_id_produk')->length(11)->nullable();
+            $table->string('stok')->length(100)->nullable();
 
             $table->foreign('stok_id_produk')->references('id_produk')->on('produks');
             });

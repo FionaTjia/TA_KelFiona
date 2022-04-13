@@ -25,7 +25,7 @@ class ProdukController extends Controller
                 ->orWhere('nama_produk', 'LIKE', "%$keyword%")
                 ->orWhere('hargaJual_produk', 'LIKE', "%$keyword%")
                 ->orWhere('modal_produk', 'LIKE', "%$keyword%")
-                ->orWhere('id_category', 'LIKE', "%$keyword%")
+                ->orWhere('product_id_category', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $produk = Produk::latest()->paginate($perPage);

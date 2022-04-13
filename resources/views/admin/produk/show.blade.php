@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $produk->id }}</td>
                                     </tr>
-                                    <tr><th> Id Produk </th><td> {{ $produk->id_produk }} </td></tr><tr><th> Nama Produk </th><td> {{ $produk->nama_produk }} </td></tr><tr><th> Harga Jual Produk </th><td> {{ $produk->hargaJual_produk }} </td></tr><tr><th> Modal Produk </th><td> {{ $produk->modal_produk }} </td></tr><tr><th> Kategori Produk </th><td> {{ $produk->produk_id_category }} </td></tr>
+                                    <tr><th> Id Produk </th><td> {{ $produk->id_produk }} </td></tr><tr><th> Nama Produk </th><td> {{ $produk->nama_produk }} </td></tr><tr><th> Harga Jual Produk </th><td> {{ $produk->hargaJual_produk }} </td></tr><tr><th> Modal Produk </th><td> {{ $produk->modal_produk }} </td></tr><tr><th> Kategori Produk </th><td> {{ $produk->product_id_category }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

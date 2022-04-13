@@ -25,7 +25,7 @@ class Stok extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_stok', 'stok_id_produk', 'stok'];
+    protected $fillable = ['stok_id_produk', 'stok'];
 
     
 }

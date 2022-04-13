@@ -29,14 +29,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Id Stok</th><th>Stok Id Produk</th><th>Stok</th><th>Actions</th>
+                                        <th>#</th><th>Id Produk</th><th>Stok</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($stok as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id_stok }}</td><td>{{ $item->stok_id_produk }}</td><td>{{ $item->stok }}</td>
+                                        <td>{{ $item->stok_id_produk }}</td><td>{{ $item->stok }}</td>
                                         <td>
                                             <a href="{{ url('/admin/stok/' . $item->id) }}" title="View Stok"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/stok/' . $item->id . '/edit') }}" title="Edit Stok"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

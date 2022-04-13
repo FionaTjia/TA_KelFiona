@@ -21,8 +21,7 @@ class StokController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $stok = Stok::where('id_stok', 'LIKE', "%$keyword%")
-                ->orWhere('stok_id_produk', 'LIKE', "%$keyword%")
+            $stok = Stok::where('stok_id_produk', 'LIKE', "%$keyword%")
                 ->orWhere('stok', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
