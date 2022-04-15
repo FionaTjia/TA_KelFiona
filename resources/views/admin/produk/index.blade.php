@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            
+
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Produk</div>
@@ -29,14 +29,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Id Produk</th><th>Nama Produk</th><th>HargaJual Produk</th><th>Actions</th>
+                                        <th>#</th><th>Id Produk</th><th>Nama Produk</th><th>Gambar Produk</th><th>Modal Produk</th><th>Harga Jual</th><th>Kategori Produk</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($produk as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id_produk }}</td><td>{{ $item->nama_produk }}</td><td>{{ $item->hargaJual_produk }}</td>
+                                        <td>{{ $item->id_produk }}</td><td>{{ $item->nama_produk }}</td><td> <img src="{{ asset ('uploads/products/'.$item->gambar_produk) }}" style="object-fit: cover; width: 300px; height: 150px;"></td><td>{{ $item->modal_produk }}</td><td>{{ $item->hargaJual_produk }}</td><td>{{ $item->product_id_category }}</td>
                                         <td>
                                             <a href="{{ url('/admin/produk/' . $item->id) }}" title="View Produk"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/produk/' . $item->id . '/edit') }}" title="Edit Produk"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

@@ -8,6 +8,11 @@
     <input class="form-control" name="nama_produk" type="text" id="nama_produk" value="{{ isset($produk->nama_produk) ? $produk->nama_produk : ''}}" >
     {!! $errors->first('nama_produk', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('gambar_produk') ? 'has-error' : ''}}">
+    <label for="gambar_produk" class="control-label" style="text-align: left">{{ 'Gambar Produk' }}</label><br><br>
+    <input class="form-control" name="gambar_produk" type="file" id="gambar_produk" value="{{ isset($produk->gambar_produk) ? $produk->gambar_produk : ''}}" >
+    {!! $errors->first('gambar_produk', '<p class="help-block">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('hargaJual_produk') ? 'has-error' : ''}}">
     <label for="hargaJual_produk" class="control-label" style="text-align: left">{{ 'Harga Jual Produk' }}</label>
     <input class="form-control" name="hargaJual_produk" type="text" id="hargaJual_produk" value="{{ isset($produk->hargaJual_produk) ? $produk->hargaJual_produk : ''}}" >

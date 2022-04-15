@@ -48,7 +48,7 @@ php artisan crud:generate Supplier --fields='id_supplier#string; nama_supplier#s
 
 php artisan crud:generate Category --fields='id_category#string; nama_category#string;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 
-php artisan crud:generate Produk --fields='id_produk#string; nama_produk#string; hargaJual_produk#string; modal_produk#string; product_id_category#string;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
+php artisan crud:generate Produk --fields='id_produk#string; nama_produk#string; gambar_produk#string; hargaJual_produk#string; modal_produk#string; product_id_category#string;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 
 php artisan crud:generate Stok --fields='stok_id_produk#string; stok#string;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 

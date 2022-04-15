@@ -18,9 +18,10 @@ class CreateProduksTable extends Migration
             $table->timestamps();
             $table->string('id_produk')->length(11)->unique();
             $table->string('nama_produk')->length(100)->nullable();
+            $table->string('gambar_produk')->nullable();
             $table->string('hargaJual_produk')->length(100)->nullable();
             $table->string('modal_produk')->length(100)->nullable();
-            $table->string('product_id_category')->length(11);
+            $table->string('product_id_category')->length(11)->nullable();
 
             $table->foreign('product_id_category')->references('id_category')->on('categories');
             });

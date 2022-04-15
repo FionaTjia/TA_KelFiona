@@ -24,3 +24,4 @@ Route::resource('admin/produk', 'App\\Http\\Controllers\\Admin\ProdukController'
 Route::resource('admin/purchase', 'App\\Http\\Controllers\\Admin\PurchaseController');
 Route::resource('admin/sales', 'App\\Http\\Controllers\\Admin\SalesController');
 Route::resource('admin/stok', 'App\\Http\\Controllers\\Admin\StokController');
+Route::resource('admin/produk', 'App\\Http\\Controllers\\Admin\ProdukController');

@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProdukController extends Controller
 {
@@ -23,6 +24,7 @@ class ProdukController extends Controller
         if (!empty($keyword)) {
             $produk = Produk::where('id_produk', 'LIKE', "%$keyword%")
                 ->orWhere('nama_produk', 'LIKE', "%$keyword%")
+                ->orWhere('gambar_produk', 'LIKE', "%$keyword%")
                 ->orWhere('hargaJual_produk', 'LIKE', "%$keyword%")
                 ->orWhere('modal_produk', 'LIKE', "%$keyword%")
                 ->orWhere('product_id_category', 'LIKE', "%$keyword%")
@@ -53,10 +55,41 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+        $produk = new Produk;
+        $produk->id_produk = $request->input('id_produk');
+        $produk->nama_produk = $request->input('nama_produk');
+        $produk->hargaJual_produk = $request->input('hargaJual_produk');
+        $produk->modal_produk = $request->input('modal_produk');
+        $produk->product_id_category = $request->input('product_id_category');
         
-        $requestData = $request->all();
+
+        // $request->validate([
+        //     'id_produk' => 'required',
+        //     'nama_produk' => 'required',
+        //     'hargaJual_produk' => 'required',
+        //     'modal_produk' => 'required',
+        //     'product_id_category' => 'required']);
+
         
-        Produk::create($requestData);
+
+        if ($request->hasfile('gambar_produk')) {
+            $file = $request->file('gambar_produk');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' .$extention;
+            $file->move('uploads/products/', $filename);
+            $produk->gambar_produk = $filename;
+
+            // $destinationPath = 'image/';
+            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            // $image->move($destinationPath, $profileImage);
+            // $requestData['gambar_produk'] = "$profileImage";
+        }
+        
+        $produk->save();
+
+        // $requestData = $request->all();
+        
+        // Produk::create($requestData);
 
         return redirect('admin/produk')->with('flash_message', 'Produk added!');
     }
@@ -100,10 +133,36 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         
-        $requestData = $request->all();
-        
         $produk = Produk::findOrFail($id);
-        $produk->update($requestData);
+        //$requestData = $request->all();
+
+        $produk->id_produk = $request->input('id_produk');
+        $produk->nama_produk = $request->input('nama_produk');
+        $produk->hargaJual_produk = $request->input('hargaJual_produk');
+        $produk->modal_produk = $request->input('modal_produk');
+        $produk->product_id_category = $request->input('product_id_category');
+        
+        if ($request->hasfile('gambar_produk')) {
+            $destination = 'uploads/products/'.$produk->gambar_produk;
+
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar_produk');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' .$extention;
+            $file->move('uploads/products/', $filename);
+            $produk->gambar_produk = $filename;
+
+            // $destinationPath = 'image/';
+            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            // $image->move($destinationPath, $profileImage);
+            // $requestData['gambar_produk'] = "$profileImage";
+        }
+        
+        $produk->update();
 
         return redirect('admin/produk')->with('flash_message', 'Produk updated!');
     }
