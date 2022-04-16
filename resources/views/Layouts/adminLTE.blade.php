@@ -184,7 +184,7 @@
           <img src='{{ asset("adminLTE/dist/img/user2-160x160.jpg") }}' class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">UAS Kelompok Fiona Tjia</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -239,6 +239,17 @@
           <div class="card">
               <div class="card-title"></div>
               <div class="card-body">
+                @if ($errors->any())
+                  <div class="alert alert-danger alert-block">
+                      <button type="button" class="close" datadismiss="
+                      alert">×</button>
+                      <strong>
+                          @if($errors->any())
+                          {!! implode('', $errors->all('<div>:message</div>')) !!}
+                          @endif
+                      </strong>
+                  </div>
+                @endif
                 @yield('content')
               </div>
             
