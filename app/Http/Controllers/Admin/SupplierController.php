@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
@@ -50,12 +51,20 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'id_supplier' => 'required|min:3|max:11',
+            'nama_supplier' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/supplier')->withErrors($validator);
+        } else {
         
-        $requestData = $request->all();
-        
-        Supplier::create($requestData);
+            $requestData = $request->all();
+            
+            Supplier::create($requestData);
 
-        return redirect('admin/supplier')->with('flash_message', 'Supplier added!');
+            return redirect('admin/supplier')->with('flash_message', 'Supplier added!');
+        }
     }
 
     /**
@@ -96,13 +105,21 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'id_supplier' => 'required|min:3|max:11',
+            'nama_supplier' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/supplier')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            $supplier = Supplier::findOrFail($id);
+            $supplier->update($requestData);
+    
+            return redirect('admin/supplier')->with('flash_message', 'Supplier updated!');
+        }
         
-        $requestData = $request->all();
-        
-        $supplier = Supplier::findOrFail($id);
-        $supplier->update($requestData);
-
-        return redirect('admin/supplier')->with('flash_message', 'Supplier updated!');
     }
 
     /**
