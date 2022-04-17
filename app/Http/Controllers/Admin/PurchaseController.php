@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PurchaseController extends Controller
 {
@@ -53,12 +54,22 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Purchase::create($requestData);
+        $validator = Validator::make($request->all(), [
+            'id_purchase' => 'required|min:3|max:11',
+            'jumlah_purchase' => 'required|max:100',
+            'harga' => 'required|max:100',
+            'id_produk' => 'required|min:3|max:11',
+            'id_supplier' => 'required|min:3|max:11',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/purchase')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            Purchase::create($requestData);
 
-        return redirect('admin/purchase')->with('flash_message', 'Purchase added!');
+            return redirect('admin/purchase')->with('flash_message', 'Purchase added!');
+        }
     }
 
     /**
@@ -99,13 +110,24 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'id_purchase' => 'required|min:3|max:11',
+            'jumlah_purchase' => 'required|max:100',
+            'harga' => 'required|max:100',
+            'id_produk' => 'required|min:3|max:11',
+            'id_supplier' => 'required|min:3|max:11',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/purchase')->withErrors($validator);
+        } else {
         
-        $requestData = $request->all();
-        
-        $purchase = Purchase::findOrFail($id);
-        $purchase->update($requestData);
+            $requestData = $request->all();
+            
+            $purchase = Purchase::findOrFail($id);
+            $purchase->update($requestData);
 
-        return redirect('admin/purchase')->with('flash_message', 'Purchase updated!');
+            return redirect('admin/purchase')->with('flash_message', 'Purchase updated!');
+        }
     }
 
     /**
