@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Konsuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KonsumenController extends Controller
 {
@@ -50,12 +51,22 @@ class KonsumenController extends Controller
      */
     public function store(Request $request)
     {
+        //validasi
+        $validator = Validator::make($request->all(), [
+            'id_konsumen' => 'required|min:3|max:11',
+            'nama_konsumen' => 'required|max:100',
+            'hp_konsumen' => 'required|max:16'
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/konsumen')->withErrors($validator);
+        } else {
         
-        $requestData = $request->all();
-        
-        Konsuman::create($requestData);
+            $requestData = $request->all();
+            
+            Konsuman::create($requestData);
 
-        return redirect('admin/konsumen')->with('flash_message', 'Konsuman added!');
+            return redirect('admin/konsumen')->with('flash_message', 'Konsuman added!');
+        }
     }
 
     /**
@@ -96,13 +107,23 @@ class KonsumenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-        
-        $konsuman = Konsuman::findOrFail($id);
-        $konsuman->update($requestData);
 
-        return redirect('admin/konsumen')->with('flash_message', 'Konsuman updated!');
+        $validator = Validator::make($request->all(), [
+            'id_konsumen' => 'required|min:3|max:11',
+            'nama_konsumen' => 'required|max:100',
+            'hp_konsumen' => 'required|max:16'
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/konsumen')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            $konsuman = Konsuman::findOrFail($id);
+            $konsuman->update($requestData);
+
+            return redirect('admin/konsumen')->with('flash_message', 'Konsuman updated!');
+        }
+        
     }
 
     /**

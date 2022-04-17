@@ -107,13 +107,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-        
-        $category = Category::findOrFail($id);
-        $category->update($requestData);
+        //validasi
+        $validator = Validator::make($request->all(), [
+            'id_category' => 'required|min:3|max:11',
+            'nama_category' => 'required|max:100'
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/category')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            $category = Category::findOrFail($id);
+            $category->update($requestData);
 
-        return redirect('admin/category')->with('flash_message', 'Category updated!');
+            return redirect('admin/category')->with('flash_message', 'Category updated!');
+        }
     }
 
     /**
