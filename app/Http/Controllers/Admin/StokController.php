@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Stok;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StokController extends Controller
 {
@@ -50,12 +51,20 @@ class StokController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'stok_id_produk' => 'required|min:3|max:11',
+            'stok' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/stok')->withErrors($validator);
+        } else {
         
-        $requestData = $request->all();
-        
-        Stok::create($requestData);
+            $requestData = $request->all();
+            
+            Stok::create($requestData);
 
-        return redirect('admin/stok')->with('flash_message', 'Stok added!');
+            return redirect('admin/stok')->with('flash_message', 'Stok added!');
+        }
     }
 
     /**
@@ -96,13 +105,20 @@ class StokController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-        
-        $stok = Stok::findOrFail($id);
-        $stok->update($requestData);
+        $validator = Validator::make($request->all(), [
+            'stok_id_produk' => 'required|min:3|max:11',
+            'stok' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/stok')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            $stok = Stok::findOrFail($id);
+            $stok->update($requestData);
 
-        return redirect('admin/stok')->with('flash_message', 'Stok updated!');
+            return redirect('admin/stok')->with('flash_message', 'Stok updated!');
+        }
     }
 
     /**
