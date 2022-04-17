@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class ProdukController extends Controller
 {
@@ -55,43 +56,42 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $produk = new Produk;
-        $produk->id_produk = $request->input('id_produk');
-        $produk->nama_produk = $request->input('nama_produk');
-        $produk->hargaJual_produk = $request->input('hargaJual_produk');
-        $produk->modal_produk = $request->input('modal_produk');
-        $produk->product_id_category = $request->input('product_id_category');
-        
+        $validator = Validator::make($request->all(), [
+            'id_produk' => 'required|min:3|max:11',
+            'nama_produk' => 'required|max:100',
+            'hargaJual_produk' => 'required|max:100',
+            'modal_produk' => 'required|max:100',
+            'product_id_category' => 'required|min:3|max:11',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/produk')->withErrors($validator);
+        } else {
 
-        // $request->validate([
-        //     'id_produk' => 'required',
-        //     'nama_produk' => 'required',
-        //     'hargaJual_produk' => 'required',
-        //     'modal_produk' => 'required',
-        //     'product_id_category' => 'required']);
+            $produk = new Produk;
+            $produk->id_produk = $request->input('id_produk');
+            $produk->nama_produk = $request->input('nama_produk');
+            $produk->hargaJual_produk = $request->input('hargaJual_produk');
+            $produk->modal_produk = $request->input('modal_produk');
+            $produk->product_id_category = $request->input('product_id_category');
 
-        
-
-        if ($request->hasfile('gambar_produk')) {
-            $file = $request->file('gambar_produk');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' .$extention;
-            $file->move('uploads/products/', $filename);
-            $produk->gambar_produk = $filename;
-
-            // $destinationPath = 'image/';
-            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            // $image->move($destinationPath, $profileImage);
-            // $requestData['gambar_produk'] = "$profileImage";
+            if ($request->hasfile('gambar_produk')) {
+                $file = $request->file('gambar_produk');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time() . '.' .$extention;
+                $file->move('uploads/products/', $filename);
+                $produk->gambar_produk = $filename;
+            }
+            $produk->save();
+            return redirect('admin/produk')->with('flash_message', 'Produk added!');
         }
         
-        $produk->save();
+        
 
         // $requestData = $request->all();
         
         // Produk::create($requestData);
 
-        return redirect('admin/produk')->with('flash_message', 'Produk added!');
+        
     }
 
     /**
@@ -134,37 +134,43 @@ class ProdukController extends Controller
     {
         
         $produk = Produk::findOrFail($id);
-        //$requestData = $request->all();
 
-        $produk->id_produk = $request->input('id_produk');
-        $produk->nama_produk = $request->input('nama_produk');
-        $produk->hargaJual_produk = $request->input('hargaJual_produk');
-        $produk->modal_produk = $request->input('modal_produk');
-        $produk->product_id_category = $request->input('product_id_category');
-        
-        if ($request->hasfile('gambar_produk')) {
-            $destination = 'uploads/products/'.$produk->gambar_produk;
+        $validator = Validator::make($request->all(), [
+            'id_produk' => 'required|min:3|max:11',
+            'nama_produk' => 'required|max:100',
+            'hargaJual_produk' => 'required|max:100',
+            'modal_produk' => 'required|max:100',
+            'product_id_category' => 'required|min:3|max:11',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/produk')->withErrors($validator);
+        } else {
 
-            if(File::exists($destination))
-            {
-                File::delete($destination);
+            $produk->id_produk = $request->input('id_produk');
+            $produk->nama_produk = $request->input('nama_produk');
+            $produk->hargaJual_produk = $request->input('hargaJual_produk');
+            $produk->modal_produk = $request->input('modal_produk');
+            $produk->product_id_category = $request->input('product_id_category');
+            
+            if ($request->hasfile('gambar_produk')) {
+                $destination = 'uploads/products/'.$produk->gambar_produk;
+
+                if(File::exists($destination))
+                {
+                    File::delete($destination);
+                }
+
+                $file = $request->file('gambar_produk');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time() . '.' .$extention;
+                $file->move('uploads/products/', $filename);
+                $produk->gambar_produk = $filename;
             }
+            
+            $produk->update();
 
-            $file = $request->file('gambar_produk');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' .$extention;
-            $file->move('uploads/products/', $filename);
-            $produk->gambar_produk = $filename;
-
-            // $destinationPath = 'image/';
-            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            // $image->move($destinationPath, $profileImage);
-            // $requestData['gambar_produk'] = "$profileImage";
+            return redirect('admin/produk')->with('flash_message', 'Produk updated!');
         }
-        
-        $produk->update();
-
-        return redirect('admin/produk')->with('flash_message', 'Produk updated!');
     }
 
     /**
