@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SalesController extends Controller
 {
@@ -53,12 +54,22 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Sale::create($requestData);
+        $validator = Validator::make($request->all(), [
+            'id_sales' => 'required|min:3|max:11',
+            'id_produk' => 'required|min:3|max:11',
+            'id_konsumen' => 'required|min:3|max:11',
+            'jumlah_sales' => 'required|max:100',
+            'total_harga_sales' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/sales')->withErrors($validator);
+        } else {
+            $requestData = $request->all();
+            
+            Sale::create($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale added!');
+            return redirect('admin/sales')->with('flash_message', 'Sale added!');
+        }
     }
 
     /**
@@ -99,13 +110,23 @@ class SalesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-        
-        $sale = Sale::findOrFail($id);
-        $sale->update($requestData);
+        $validator = Validator::make($request->all(), [
+            'id_sales' => 'required|min:3|max:11',
+            'id_produk' => 'required|min:3|max:11',
+            'id_konsumen' => 'required|min:3|max:11',
+            'jumlah_sales' => 'required|max:100',
+            'total_harga_sales' => 'required|max:100',
+            ]);
+        if ($validator->fails()) {
+            return redirect('admin/sales')->withErrors($validator);
+        } else {   
+            $requestData = $request->all();
+            
+            $sale = Sale::findOrFail($id);
+            $sale->update($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale updated!');
+            return redirect('admin/sales')->with('flash_message', 'Sale updated!');
+        }
     }
 
     /**
