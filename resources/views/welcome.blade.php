@@ -12,7 +12,7 @@
 
 @section('content')
     <h1 style="text-align: center">UAS KAPITA SELEKTA - KELOMPOK FIONA TJIA</h1><br>
-    <h2 style="text-align: center">Perancangan Sistem Informasi Point of Sales Berbasis Web Pada Rumah Makan Kokobop Chicke</h2>
+    <h2 style="text-align: center">Perancangan Sistem Informasi Point of Sales Berbasis Web Pada Rumah Makan Kokobop Chicken</h2>
 @endsection
     
 {{-- Item Type
