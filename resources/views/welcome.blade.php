@@ -14,33 +14,9 @@
     <h1 style="text-align: center">UAS KAPITA SELEKTA - KELOMPOK FIONA TJIA</h1><br>
     <h2 style="text-align: center">Perancangan Sistem Informasi Point of Sales Berbasis Web Pada Rumah Makan Kokobop Chicken</h2>
 @endsection
-    
-{{-- Item Type
-# Colomn Name Type Null Default
-UK code varchar (20) No
-description varchar (255) No
 
 
-php artisan crud:generate ItemType --fields='code#string; description#text;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
-
-Tabel Item Category
-# Colomn Name Type Null Default
-UK code varchar (20) No
-description varchar (255) No
-
-
-php artisan crud:generate ItemCategory --fields='code#string; description#text;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
-
-
-Tabel Role
-# Colomn Name Type Null Default
-
-name varchar (255) No
-guard_name varchar (255) No
-
-
-
-php artisan crud:generate Role --fields='name#string; guard_name#text;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
+{{-- php artisan crud:generate Role --fields='name#string; guard_name#text;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 
 php artisan crud:generate Konsumen --fields='id_konsumen#string; nama_konsumen#string; hp_konsumen#string' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 

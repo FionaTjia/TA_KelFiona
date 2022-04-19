@@ -60,6 +60,7 @@ class ProdukController extends Controller
             'id_produk' => 'required|min:3|max:11',
             'nama_produk' => 'required|max:100',
             'hargaJual_produk' => 'required|max:100',
+            'gambar_produk' => 'required',
             'modal_produk' => 'required|max:100',
             'product_id_category' => 'required|min:3|max:11',
             ]);
