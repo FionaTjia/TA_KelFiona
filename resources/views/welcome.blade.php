@@ -16,9 +16,7 @@
 @endsection
 
 
-{{-- php artisan crud:generate Role --fields='name#string; guard_name#text;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
-
-php artisan crud:generate Konsumen --fields='id_konsumen#string; nama_konsumen#string; hp_konsumen#string' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
+{{-- php artisan crud:generate Konsumen --fields='id_konsumen#string; nama_konsumen#string; hp_konsumen#string' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 
 php artisan crud:generate Supplier --fields='id_supplier#string; nama_supplier#string;' --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin --form-helper=html
 
